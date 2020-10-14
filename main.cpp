@@ -151,8 +151,7 @@ int import_address_book (vector <Addressed> & contacts)
         case 6: contact_from_file.phone_number = line;
                 contacts.push_back(contact_from_file); break;
         }
-        if (text_nr == 6){text_nr = 0;}
-        contacts_qty_file ++;
+        if (text_nr == 6){text_nr = 0, contacts_qty_file ++;}
         text_nr ++;
     }
     file.close();
