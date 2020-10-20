@@ -42,46 +42,43 @@ string convert_first_letter_to_capital (string text);
 
 int main()
 {
-
-    const int maximum_contacts_qty = 1000;
-    vector <Addressed> contacts;
-    int contacts_qty = import_address_book (contacts);
+    vector <User> users;
+    import_list_of_users(users);
     char select;
+    int user_logged_in = 0;
+    bool program_end;
 
-    while (contacts_qty <= maximum_contacts_qty)
+    while (!program_end)
     {
         display_main_menu();
         cout << endl << "Select:";
         cin >> select;
-        int last_contact_id_number = get_last_contact_id_number (contacts);
-
         switch (select)
         {
-        case '1':
-            address_book_full (contacts_qty, maximum_contacts_qty);
-            contacts_qty = add_new_contact (contacts, last_contact_id_number, contacts_qty);
-            break;
-        case '2':
-            find_contact_by_first_name (contacts);
-            break;
-        case '3':
-            find_contact_by_surname (contacts, contacts_qty);
-            break;
-        case '4':
-            display_all_contacts (contacts, contacts_qty);
-            break;
-        case '5':
-            delete_contact (contacts, contacts_qty);
-            break;
-        case '6':
-            edit_contact (contacts);
-            break;
-        case '9':
-            exit ();
-           break;
+           case '1': user_logged_in = log_in (users); break;
+           case '2': add_new_user (users); break;
+           case '3': program_end = exit(); break;
+        }
+        while (user_logged_in)
+        {
+            display_address_book_menu();
+            vector <Addressed> contacts;
+            import_list_of_contacts (contacts, user_logged_in);
+            cout << endl << "Select: ";
+            cin >> select;
+            switch (select)
+            {
+            case '1': add_new_contact (contacts, user_logged_in); break;
+            case '2': find_contact_by_first_name (contacts); break;
+            case '3': find_contact_by_surname (contacts); break;
+            case '4': display_all_contacts (contacts); break;
+            case '5': delete_contact (contacts); break;
+            case '6': edit_contact (contacts); break;
+            case '7': change_password (users, user_logged_in); break;
+            case '8': user_logged_in = 0; break;
+            }
         }
     }
-
     return 0;
 }
 
