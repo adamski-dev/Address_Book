@@ -6,7 +6,11 @@
 #include <sstream>
 
 using namespace std;
-
+struct User
+{
+    int user_id;
+    string user_name, password;
+};
 struct Addressed
 {
     int id;
