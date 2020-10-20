@@ -13,32 +13,32 @@ struct User
 };
 struct Addressed
 {
+    int contact_id;
     int id;
     string name, surname, address, email_address, phone_number;
 };
-
+void import_list_of_users (vector <User> & users);
+int log_in (vector<User> & users);
+void add_new_user (vector<User> & users);
+bool exit();
+void import_list_of_contacts (vector <Addressed> & contacts, int logged_user);
+void add_new_contact (vector<Addressed> & contacts, int logged_user);
+int get_last_contact_id ();
 void find_contact_by_first_name (vector <Addressed> & contacts);
-void find_contact_by_surname (vector <Addressed> & contacts, int contacts_qty);
-void display_all_contacts (vector <Addressed> & contacts, int contacts_qty);
-void display_content(vector <Addressed> & contacts, int i);
-void delete_contact(vector <Addressed> & contacts, int contacts_qty);
+void display_content (Addressed content);
+void find_contact_by_surname (vector <Addressed> & contacts);
+void display_all_contacts (vector<Addressed> & contacts);
+void delete_contact (vector <Addressed> & contacts);
+void delete_contact_from_file (int id);
 void edit_contact (vector <Addressed> & contacts);
-void edit_first_name (vector <Addressed> & contacts, int id);
-void edit_surname (vector <Addressed> & contacts, int id);
-void edit_address (vector <Addressed> & contacts, int id);
-void edit_email_address (vector <Addressed> & contacts, int id);
-void edit_phone_number (vector <Addressed> & contacts, int id);
-void create_temp_file (vector <Addressed> & contacts);
-void display_all_contacts (vector <Addressed> & contacts, int contacts_qty);
-void exit();
-void display_main_menu ();
-void display_edit_menu();
-void address_book_full (int contacts_qty, const int maximum_contacts_qty);
-int import_address_book (vector <Addressed> & contacts);
-int add_new_contact (vector <Addressed> & contacts, int last_contact_id_number, int contacts_qty);
-int string_to_int_convert (string text_of_id);
-int get_last_contact_id_number (vector <Addressed> & contacts);
+void update_contact_in_file (Addressed contact, int id);
+void change_password (vector<User> & users, int logged_user);
+void update_users_file (User data, int logged_user);
+int string_to_int_convert (string text);
 string convert_first_letter_to_capital (string text);
+void display_main_menu();
+void display_address_book_menu ();
+void display_edit_menu();
 
 int main()
 {
